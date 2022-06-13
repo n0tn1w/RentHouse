@@ -17,4 +17,5 @@ public:
 	void setHasStorageSpace(const bool);
 
 	Vehicle *clone() const override;
+	void print() const override;
 };

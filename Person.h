@@ -3,6 +3,8 @@
 
 class Person
 {
+
+protected:
 	MyString name;
 	MyString email;
 	MyString EGN;

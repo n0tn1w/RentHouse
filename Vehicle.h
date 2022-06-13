@@ -68,6 +68,8 @@ public:
 
 	void changeRentedStatus(bool);
 
+	virtual void print() const;
+
 private:
     void setDefaultValue();
 };

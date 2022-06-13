@@ -30,3 +30,8 @@ Vehicle *Bus::clone() const
 {
     return new Bus(*this);
 }
+
+void Bus::print() const {
+    Vehicle::print();
+    std::cout << "Rating: " << rating << "; Has AC: " << hasAC << std::endl;
+}

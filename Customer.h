@@ -16,4 +16,7 @@ public:
     const MyString& getPassword() const;
     void setPassword(const MyString&);
 
+    Customer* clone() const;
+    void print() const;
+
 };

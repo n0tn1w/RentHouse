@@ -30,3 +30,9 @@ Vehicle *Motorcycle::clone() const
 {
     return new Motorcycle(*this);
 }
+
+void Motorcycle::print() const {
+    Vehicle::print();
+    std::cout << "Does it have extra house: " << doesHaveExtraHouse << "; Has storage space: " << hasStorageSpace << std::endl;
+}
+

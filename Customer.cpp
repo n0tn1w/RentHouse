@@ -1,4 +1,5 @@
 #include "Customer.h"
+#include <iostream>
 
 Customer::Customer(): Person() { }
 
@@ -19,4 +20,15 @@ const MyString& Customer::getPassword() const {
 
 void Customer::setPassword(const MyString& password) {
     this->password = password;
+}
+
+Customer* Customer::clone() const
+{
+    return new Customer(*this);
+}
+
+void Customer::print() const {
+
+    std::cout << "EGN: " << EGN << std::endl;
+    std::cout << "Name: " << name << "; Email: " << email << "; City: " << city << "; Phone: " << phone << ";" << std::endl;
 }

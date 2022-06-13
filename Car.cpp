@@ -30,3 +30,8 @@ Vehicle *Car::clone() const
 {
     return new Car(*this);
 }
+
+void Car::print() const {
+    Vehicle::print();
+    std::cout << "Is SportsCar: " << isSportsCar << "; Is Convertible: " << isConvertable << std::endl;
+}

@@ -17,5 +17,6 @@ public:
 	const bool getIsConvertable() const;
 	void setIsConvertable(const bool);
 
-	Vehicle *clone() const override;
+	Vehicle* clone() const override;
+	void print() const override;
 };

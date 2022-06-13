@@ -1,4 +1,5 @@
 #include "Vehicle.h"
+#include <iostream>
 
 Vehicle::Vehicle() {
 }
@@ -95,6 +96,12 @@ bool Vehicle::isVehicleRented() const
 void Vehicle::changeRentedStatus(bool status)
 {
     isRented = status;
+}
+
+void Vehicle::print() const {
+    std::cout << "License plate: " << licensePlate << std::endl;
+    std::cout << "Is rented: " << isRented << std::endl;
+    std::cout << "Brand: " << brand << "; Model: " << model << "; Year of production: " << yearOfProduction << "; Number of seats: " << seatsCount <<  "; ";
 }
 
 
