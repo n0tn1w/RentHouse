@@ -24,6 +24,9 @@ public:
     friend bool operator>(const Date &, const Date &);
     friend bool operator>=(const Date &, const Date &);
     friend bool operator<=(const Date &, const Date &);
+
+    void addDays(size_t);
+    friend std::ostream &operator<<(std::ostream &, const Date &);
 };
 
 bool isValidDate(const size_t day, const size_t month, const size_t year);

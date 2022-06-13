@@ -143,3 +143,27 @@ size_t daysIn(size_t month, size_t year)
     }
     return monthsArr[month - 1];
 }
+
+void Date::addDays(size_t days)
+{
+    days += day - 1;
+    day = 1;
+    while (days >= daysIn(month, year))
+    {
+        days -= daysIn(month, year);
+        month++;
+        if (month > 12)
+        {
+            month = 1;
+            year++;
+        }
+    }
+
+    day += days;
+}
+
+std::ostream &operator<<(std::ostream &ostr, const Date &date)
+{
+    ostr << date.day << " " << date.month << " " << date.year;
+    return ostr;
+}
