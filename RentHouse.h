@@ -21,9 +21,9 @@ private:
 public:
 	bool addCustomer(const MyString&, const MyString&, const MyString&, const MyString&, const MyString&, const MyString&, const MyString&);
 
-	void addCar(const MyString &, const MyString &, const size_t, const size_t, const bool, const bool);
-    void addBus(const MyString &, const MyString &, const size_t, const size_t, const size_t, const bool);
-    void addMotorcycle(const MyString &, const MyString &, const size_t, const size_t, const bool, const bool);
+	void addCar(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const bool, const bool);
+    void addBus(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const size_t, const bool);
+    void addMotorcycle(const MyString &, const MyString &, const MyString &, const size_t, const size_t, const bool, const bool);
 
     void printAllVehicles() const;
 	void printAllCustomers() const;
@@ -43,4 +43,6 @@ private:
     bool isCustomerWithUniqueEGN(Customer*);
     bool isLicensePlateUnique(Vehicle&);
 
+	friend std::ifstream& operator>>(std::ifstream&, RentHouse&);
+	friend std::ofstream& operator<<(std::ofstream&, const RentHouse&);
 };

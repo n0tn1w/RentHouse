@@ -11,7 +11,6 @@ private:
 	MyString model;
 	size_t yearOfProduction;
 	size_t seatsCount;
-
 	bool isRented;
 
 protected:
@@ -51,6 +50,8 @@ public:
 	void setSeatsCount(const size_t);
     void setModel(const MyString&);
     void setIsRented(const bool);
+	void setEngineType(const size_t);
+	void setGearbox(const size_t);
 
 	const MyString &getBrand() const;
 	const MyString &getLicensePlate() const;

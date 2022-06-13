@@ -19,4 +19,6 @@ public:
     Customer* clone() const;
     void print() const;
 
+    friend std::ofstream& operator<<(std::ofstream&, const Customer&);
+    friend std::ifstream& operator>>(std::ifstream&, Customer&);
 };

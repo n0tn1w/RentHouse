@@ -9,15 +9,16 @@ bool RentHouse::addVehicles(Vehicle&& vechile) {
     }
 }
 
-void RentHouse::addCar(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const bool isSportsCar, const bool isConvertable) {
+//add model todo
+void RentHouse::addCar(const MyString &brand, const MyString& model, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const bool isSportsCar, const bool isConvertable) {
     addVehicles(Car(brand, licensePlate, yearOfProduction, seatsCount, isSportsCar, isConvertable));
 }
 
-void RentHouse::addBus(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const size_t rating, const bool hasAC) {
+void RentHouse::addBus(const MyString &brand, const MyString& model, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const size_t rating, const bool hasAC) {
     addVehicles(Bus(brand, licensePlate, yearOfProduction, seatsCount, rating, hasAC));
 }
 
-void RentHouse::addMotorcycle(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const bool doesHaveExtraHouse, const bool hasStorageSpace) {
+void RentHouse::addMotorcycle(const MyString &brand, const MyString& model, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const bool doesHaveExtraHouse, const bool hasStorageSpace) {
     addVehicles(Motorcycle(brand, licensePlate, yearOfProduction, seatsCount, doesHaveExtraHouse, hasStorageSpace));
 }
 
@@ -63,3 +64,75 @@ void RentHouse::printAllCustomers() const {
     }
 }
 
+
+//new
+
+std::ifstream& operator>>(std::ifstream& ifstr, RentHouse& RH)
+{
+	size_t vehicleType;
+	MyString p1, p2, p3, p4, p5, p6, p7, p8, p9;
+	MyString newLine;
+	size_t carsCount;
+
+	ifstr >> carsCount >> newLine;
+
+	for (size_t i = 0; i < carsCount; i++)
+	{
+		ifstr >> p1 >> p2 >> p3 >> p4 >> p5 >> p6 >> p7 >> p8 >> p9;
+
+		vehicleType = p1.convertToInt();
+		switch (vehicleType)
+		{
+			case 0: RH.addMotorcycle(p2, p3, p4, p5.convertToInt(), p6.convertToInt(), p7.convertToInt(), p8.convertToInt());
+			case 1: RH.addCar(p2, p3, p4, p5.convertToInt(), p6.convertToInt(), p7.convertToInt(), p8.convertToInt());
+			case 2: RH.addBus(p2, p3, p4, p5.convertToInt(), p6.convertToInt(), p7.convertToInt(), p8.convertToInt());
+		default: std::cout << "Wrong vehicle type specifier!" << std::endl; break;
+		}
+	}
+
+	size_t customersCount = RH.customers.getCount();
+	ifstr >> customersCount >> newLine;
+
+	for (size_t i = 0; i < customersCount; i++)
+	{
+		ifstr >> p1 >> p2 >> p3 >> p4 >> p5 >> p6;
+
+		//RH.addCustomer(p1, p2, p3, p4, p5, p6);
+	}
+	/*
+	size_t rentsCount = RH.rents.getCount();
+	ofstr << rentsCount << newLine;
+	for (size_t i = 0; i < rentsCount; i++)
+	{
+		ifstr >> RH.rents[i];
+	}
+	*/
+	return ifstr;
+}
+
+std::ofstream& operator<<(std::ofstream& ofstr, const RentHouse& RH)
+{
+	MyString newLine("\n");
+	size_t carsCount = RH.vehicles.getCount();
+	ofstr << carsCount << newLine;
+	for (size_t i = 0; i < carsCount; i++)
+	{
+		ofstr << RH.vehicles[i];
+	}
+
+	size_t customersCount = RH.customers.getCount();
+	ofstr << customersCount << newLine;
+	for (size_t i = 0; i < customersCount; i++)
+	{
+		ofstr << RH.customers[i];
+	}
+	/*
+	size_t rentsCount = RH.rents.getCount();
+	ofstr << rentsCount << newLine;
+	for (size_t i = 0; i < rentsCount; i++)
+	{
+		ofstr << RH.rents[i];
+	}
+	*/
+	return ofstr;
+}

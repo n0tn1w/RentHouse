@@ -39,6 +39,16 @@ void Vehicle::setIsRented(const bool isRented) {
     this->isRented = isRented;
 }
 
+void Vehicle::setEngineType(const size_t index)
+{
+    engineType = (EngineType)index;
+}
+
+void Vehicle::setGearbox(const size_t index)
+{
+    gearbox = (Gearbox)index;
+}
+
 
 const MyString &Vehicle::getBrand() const
 {

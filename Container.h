@@ -32,6 +32,10 @@ public:
 
     T *&operator[](size_t);
     const T *operator[](size_t) const;
+
+
+    friend std::ifstream& operator<<(std::ifstream& ofstr, Container<T>& t);
+    friend std::ofstream& operator<<(std::ofstream& ofstr, const Container<T>& t);
 };
 
 template <typename T>
@@ -186,4 +190,26 @@ const T *Container<T>::operator[](size_t index) const
         // return new T();
     }
     return elements[index];
+}
+
+template <typename T>
+inline std::ifstream& operator<<(std::ifstream& ifstr, Container<T>& t)
+{
+    for (size_t i = 0; i < t.size; i++)
+    {
+        T::operator>>(ifstr, t.operator[](i));
+    }
+
+    return ifstr;
+}
+
+template <typename T>
+std::ofstream& operator<<(std::ofstream& ofstr, const Container<T>& t)
+{
+    for (size_t i = 0; i < t.size; i++)
+    {
+        T::operator<<(ofstr, t.operator[](i));
+    }
+
+    return ofstr;
 }

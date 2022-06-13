@@ -19,4 +19,7 @@ public:
 
 	Vehicle* clone() const override;
 	void print() const override;
+
+	friend std::ifstream& operator>>(std::ifstream&, Car&);
+	friend std::ofstream& operator<<(std::ofstream&, const Car&);
 };
