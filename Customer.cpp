@@ -1,42 +1,46 @@
 #include "Customer.h"
 #include <iostream>
 
-Customer::Customer(): Person() { }
+Customer::Customer() : Person() {}
 
-Customer::Customer(const MyString& name, const MyString& email, const MyString& EGN, const MyString& city, const MyString& phone, const MyString& username, const MyString& password)
-: Person(name, email, EGN, city, phone), username(username), password(password) { }
+Customer::Customer(const MyString &name, const MyString &email, const MyString &EGN, const MyString &city, const MyString &phone, const MyString &username, const MyString &password)
+    : Person(name, email, EGN, city, phone), username(username), password(password) {}
 
-const MyString& Customer::getUsername() const {
+const MyString &Customer::getUsername() const
+{
     return username;
 }
 
-void Customer::setUsername(const MyString& username) {
+void Customer::setUsername(const MyString &username)
+{
     this->username = username;
 }
 
-const MyString& Customer::getPassword() const {
+const MyString &Customer::getPassword() const
+{
     return password;
 }
 
-void Customer::setPassword(const MyString& password) {
+void Customer::setPassword(const MyString &password)
+{
     this->password = password;
 }
 
-Customer* Customer::clone() const
+Customer *Customer::clone() const
 {
     return new Customer(*this);
 }
 
-void Customer::print() const {
+void Customer::print() const
+{
 
     std::cout << "EGN: " << EGN << std::endl;
     std::cout << "Name: " << name << "; Email: " << email << "; City: " << city << "; Phone: " << phone << ";" << std::endl;
 }
 
+// new
 
-//new
-
-std::ofstream& operator<<(std::ofstream& ofstr, const Customer& C)
+std::ofstream &operator<<(std::ofstream &ofstr, const Customer &C)
 {
     ofstr << C.getName();
     ofstr << C.getEmail();
@@ -49,7 +53,7 @@ std::ofstream& operator<<(std::ofstream& ofstr, const Customer& C)
     return ofstr;
 }
 
-std::ifstream& operator>>(std::ifstream& ifstr, Customer& C)
+std::ifstream &operator>>(std::ifstream &ifstr, Customer &C)
 {
     MyString temp;
 
@@ -57,7 +61,8 @@ std::ifstream& operator>>(std::ifstream& ifstr, Customer& C)
     C.setName(temp);
     ifstr >> temp;
     C.setEmail(temp);
-    ifstr >> temp;;
+    ifstr >> temp;
+    ;
     C.setEGN(temp);
     ifstr >> temp;
     C.setCity(temp);

@@ -4,7 +4,6 @@
 class Car : public Vehicle
 {
 private:
-
 	bool isSportsCar;
 	bool isConvertable;
 
@@ -17,9 +16,9 @@ public:
 	const bool getIsConvertable() const;
 	void setIsConvertable(const bool);
 
-	Vehicle* clone() const override;
+	Vehicle *clone() const override;
 	void print() const override;
 
-	friend std::ifstream& operator>>(std::ifstream&, Car&);
-	friend std::ofstream& operator<<(std::ofstream&, const Car&);
+	friend std::ifstream &operator>>(std::ifstream &, Car &);
+	friend std::ofstream &operator<<(std::ofstream &, const Car &);
 };

@@ -2,8 +2,9 @@
 
 Person::Person() {}
 
-Person::Person(const MyString& name, const MyString& email, const MyString& EGN, const MyString& city, const MyString& phone)
-:name(name), email(email), EGN(EGN), city(city), phone(phone) {
+Person::Person(const MyString &name, const MyString &email, const MyString &EGN, const MyString &city, const MyString &phone)
+    : name(name), email(email), EGN(EGN), city(city), phone(phone)
+{
 }
 
 void Person::setName(const MyString &name)

@@ -1,7 +1,8 @@
 #include "Vehicle.h"
 #include <iostream>
 
-Vehicle::Vehicle() {
+Vehicle::Vehicle()
+{
 }
 
 Vehicle::Vehicle(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount)
@@ -27,15 +28,18 @@ void Vehicle::setYearOfProduction(const size_t yearOfProduction)
     this->yearOfProduction = yearOfProduction;
 }
 
-void Vehicle::setSeatsCount(const size_t seatsCount) {
+void Vehicle::setSeatsCount(const size_t seatsCount)
+{
     this->seatsCount = seatsCount;
 }
 
-void Vehicle::setModel(const MyString& model) {
+void Vehicle::setModel(const MyString &model)
+{
     this->model = model;
 }
 
-void Vehicle::setIsRented(const bool isRented) {
+void Vehicle::setIsRented(const bool isRented)
+{
     this->isRented = isRented;
 }
 
@@ -48,7 +52,6 @@ void Vehicle::setGearbox(const size_t index)
 {
     gearbox = (Gearbox)index;
 }
-
 
 const MyString &Vehicle::getBrand() const
 {
@@ -69,11 +72,13 @@ size_t Vehicle::getSeatsCount() const
 {
     return seatsCount;
 }
-const MyString& Vehicle::getModel() const {
+const MyString &Vehicle::getModel() const
+{
     return model;
 }
 
-bool Vehicle::getIsRented() const {
+bool Vehicle::getIsRented() const
+{
     return isRented;
 }
 
@@ -108,10 +113,9 @@ void Vehicle::changeRentedStatus(bool status)
     isRented = status;
 }
 
-void Vehicle::print() const {
+void Vehicle::print() const
+{
     std::cout << "License plate: " << licensePlate << std::endl;
     std::cout << "Is rented: " << isRented << std::endl;
-    std::cout << "Brand: " << brand << "; Model: " << model << "; Year of production: " << yearOfProduction << "; Number of seats: " << seatsCount <<  "; ";
+    std::cout << "Brand: " << brand << "; Model: " << model << "; Year of production: " << yearOfProduction << "; Number of seats: " << seatsCount << "; ";
 }
-
-

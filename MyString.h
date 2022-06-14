@@ -38,10 +38,12 @@ public:
 
 	int convertToInt() const;
 	bool isOnlyNumbers() const;
+	bool isInt() const;
 
 	double convertToDouble() const;
 	int findDotInDouble() const;
 	bool isDouble() const;
+	bool isChar(const char) const;
 };
 
 MyString operator+(const MyString &lhs, const MyString &rhs);

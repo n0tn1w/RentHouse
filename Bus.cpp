@@ -7,24 +7,27 @@ Bus::Bus() : Vehicle()
     hasAC = false;
 }
 
-Bus::Bus(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const size_t rating, const bool hasAC)
-: Vehicle(brand, licensePlate, yearOfProduction, seatsCount), rating(rating), hasAC(hasAC)
+Bus::Bus(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount, const size_t rating, const bool hasAC)
+    : Vehicle(brand, licensePlate, yearOfProduction, seatsCount), rating(rating), hasAC(hasAC)
 {
     category = Category::Bus;
 }
 
-
-const size_t Bus::getRating() const {
+const size_t Bus::getRating() const
+{
     return rating;
 }
-void Bus::setRating(const size_t rating) {
+void Bus::setRating(const size_t rating)
+{
     this->rating = rating;
 }
 
-const bool Bus::getHasAC() const {
+const bool Bus::getHasAC() const
+{
     return hasAC;
 }
-void Bus::setHasAC(const bool hasAC) {
+void Bus::setHasAC(const bool hasAC)
+{
     this->hasAC = hasAC;
 }
 
@@ -33,16 +36,15 @@ Vehicle *Bus::clone() const
     return new Bus(*this);
 }
 
-void Bus::print() const {
+void Bus::print() const
+{
     Vehicle::print();
     std::cout << "Rating: " << rating << "; Has AC: " << hasAC << std::endl;
 }
 
-//new
+// new
 
-
-
-std::ifstream& operator>>(std::ifstream& ifstr, Bus& B)
+std::ifstream &operator>>(std::ifstream &ifstr, Bus &B)
 {
     MyString temp;
     ifstr >> temp;
@@ -69,7 +71,7 @@ std::ifstream& operator>>(std::ifstream& ifstr, Bus& B)
     return ifstr;
 }
 
-std::ofstream& operator<<(std::ofstream& ofstr, const Bus& B)
+std::ofstream &operator<<(std::ofstream &ofstr, const Bus &B)
 {
     MyString newLine("\n");
     ofstr << "2" << newLine;

@@ -102,19 +102,16 @@ bool isValidDate(const size_t day, const size_t month, const size_t year)
 {
     if (month > 12 || month < 1)
     {
-        std::cout << "hui Month ";
         return false;
     }
 
     if (year > getCurrentYear() + 1)
     {
-        std::cout << "hui year ";
         return false;
     }
 
     if (daysIn(month, year) < day)
     {
-        std::cout << "hui days ";
         return false;
     }
     return true;

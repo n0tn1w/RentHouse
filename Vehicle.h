@@ -48,8 +48,8 @@ public:
 	void setLicensePlate(const MyString &);
 	void setYearOfProduction(const size_t);
 	void setSeatsCount(const size_t);
-    void setModel(const MyString&);
-    void setIsRented(const bool);
+	void setModel(const MyString &);
+	void setIsRented(const bool);
 	void setEngineType(const size_t);
 	void setGearbox(const size_t);
 
@@ -57,12 +57,12 @@ public:
 	const MyString &getLicensePlate() const;
 	size_t getYearOfProduction() const;
 	size_t getSeatsCount() const;
-	const MyString& getModel() const;
+	const MyString &getModel() const;
 	bool getIsRented() const;
 
-	const Category& getCategory() const;
-	const Gearbox& getGearbox() const;
-	const EngineType& getEngineType() const;
+	const Category &getCategory() const;
+	const Gearbox &getGearbox() const;
+	const EngineType &getEngineType() const;
 
 	bool isVehicleNew();
 	bool isVehicleRented() const;
@@ -72,5 +72,5 @@ public:
 	virtual void print() const;
 
 private:
-    void setDefaultValue();
+	void setDefaultValue();
 };

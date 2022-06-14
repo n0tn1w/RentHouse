@@ -7,40 +7,44 @@ Car::Car() : Vehicle()
     isConvertable = false;
 }
 
-Car::Car(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount ,const bool isSportsCar, const bool isConvertable)
-: Vehicle(brand, licensePlate, yearOfProduction, seatsCount), isSportsCar(isSportsCar), isConvertable(isConvertable)
+Car::Car(const MyString &brand, const MyString &licensePlate, const size_t yearOfProduction, const size_t seatsCount, const bool isSportsCar, const bool isConvertable)
+    : Vehicle(brand, licensePlate, yearOfProduction, seatsCount), isSportsCar(isSportsCar), isConvertable(isConvertable)
 {
     category = Category::Automobile;
 }
 
-const bool Car::getIsSportsCar() const {
+const bool Car::getIsSportsCar() const
+{
     return isSportsCar;
 }
-const bool Car::getIsConvertable() const {
+const bool Car::getIsConvertable() const
+{
     return isConvertable;
 }
 
-void Car::setIsSportsCar(const bool isSportsCar) {
+void Car::setIsSportsCar(const bool isSportsCar)
+{
     this->isSportsCar = isSportsCar;
 }
-void Car::setIsConvertable(const bool isConvertable) {
+void Car::setIsConvertable(const bool isConvertable)
+{
     this->isConvertable = isConvertable;
 }
-
 
 Vehicle *Car::clone() const
 {
     return new Car(*this);
 }
 
-void Car::print() const {
+void Car::print() const
+{
     Vehicle::print();
     std::cout << "Is SportsCar: " << isSportsCar << "; Is Convertible: " << isConvertable << std::endl;
 }
 
-//new
+// new
 
-std::ifstream& operator>>(std::ifstream& ifstr, Car& C)
+std::ifstream &operator>>(std::ifstream &ifstr, Car &C)
 {
     MyString temp;
     ifstr >> temp;
@@ -67,7 +71,7 @@ std::ifstream& operator>>(std::ifstream& ifstr, Car& C)
     return ifstr;
 }
 
-std::ofstream& operator<<(std::ofstream& ofstr, const Car& C)
+std::ofstream &operator<<(std::ofstream &ofstr, const Car &C)
 {
     MyString newLine("\n");
     ofstr << "1" << newLine;

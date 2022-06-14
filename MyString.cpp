@@ -194,11 +194,28 @@ MyString &MyString::operator=(MyString &&otherString)
     return *this;
 }
 
-bool MyString::isOnlyNumbers() const
+bool MyString::isInt() const
 {
     bool isNeg = (str[0] == '-');
 
     for (int i = isNeg; i < size; i++)
+    {
+        if (str[i] < '0' || str[i] > '9')
+        {
+            return false;
+        }
+    }
+
+    if (size == 0 || str[0] == '\0')
+    {
+        return false;
+    }
+    return true;
+}
+
+bool MyString::isOnlyNumbers() const
+{
+    for (int i = 0; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -322,4 +339,9 @@ double MyString::convertToDouble() const
     }
 
     return output;
+}
+
+bool MyString::isChar(const char symb) const
+{
+    return size == 1 && str[0] == symb;
 }

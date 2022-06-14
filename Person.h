@@ -13,7 +13,7 @@ protected:
 
 public:
 	Person();
-	Person(const MyString&, const MyString&, const MyString&, const MyString&, const MyString&);
+	Person(const MyString &, const MyString &, const MyString &, const MyString &, const MyString &);
 	virtual ~Person() = default;
 
 	void setName(const MyString &);
