@@ -11,7 +11,6 @@ private:
 	MyString model;
 	size_t yearOfProduction;
 	size_t seatsCount;
-	bool isRented;
 
 protected:
 	enum Category
@@ -49,7 +48,6 @@ public:
 	void setYearOfProduction(const size_t);
 	void setSeatsCount(const size_t);
 	void setModel(const MyString &);
-	void setIsRented(const bool);
 	void setEngineType(const size_t);
 	void setGearbox(const size_t);
 
@@ -58,7 +56,6 @@ public:
 	size_t getYearOfProduction() const;
 	size_t getSeatsCount() const;
 	const MyString &getModel() const;
-	bool getIsRented() const;
 
 	const Category &getCategory() const;
 	const Gearbox &getGearbox() const;

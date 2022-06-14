@@ -116,7 +116,7 @@ void Program::Menu_Print()
     }
     else if (line.isChar(char_counter + 2))
     {
-        // rentHouse.printAllRents();
+        rentHouse.printAllRents();
     }
     else if (line.isChar(char_counter + 3))
     {
@@ -124,7 +124,7 @@ void Program::Menu_Print()
     }
     else if (line.isChar(char_counter + 4))
     {
-        Print_CarsByBrand();
+        Print_VehiclesByBrand();
     }
     else if (line.isChar(char_counter + 5))
     {
@@ -263,7 +263,7 @@ void Program::Add_Vehicle()
     */
 }
 
-void Program::Print_CarsByBrand() const
+void Program::Print_VehiclesByBrand() const
 {
     std::cout << "Enter brand: ";
 
@@ -271,7 +271,7 @@ void Program::Print_CarsByBrand() const
     brand.getLine(std::cin);
     // check if brand exists???
 
-    rentHouse.printCarsByBrand(brand);
+    rentHouse.printVehiclesByBrand(brand);
     // if (!rentHouse.printCarsByBrand(brand)) // if bool
     // {
     //     std::cout << "Brand does not exist!\n";
@@ -339,12 +339,19 @@ void Program::Rent_RentVehicle()
     {
         std::cout << "End date is before Start date!";
     }
-    // rentHouse.AddRent(EGN,plate,SDate, EDate);
+    // if( !rentHouse.addRent(EGN,plate,SDate, EDate) ) {
+    //      vehicle with this plate exist
+    // }
+    // A person can rent 2 cars,
+    // but one car cant be rent by 2 people
+    // same with man and woman
 }
 
 void Program::Rent_EndRentVehicle()
 {
-    // rentHouse.RemoveRent()
+    // if( !rentHouse.removeRent(licensePlate) ) {
+    //     there is not vehicle with this licensePlate
+    // }
 }
 
 void Program::Rent_ExtendRent()
@@ -363,10 +370,17 @@ void Program::Rent_ExtendRent()
     }
     size_t days = daysStr.convertToInt();
 
-    // Rent a;
-    // a.increaseRentalTime(days);
+    // if( a.increaseRentalTime(licensePlate, days) ) {
+    //      there is not vehicle with this licensePlate
+    // }
+
 }
 
 void Program::Rent_ChangeOwner()
 {
+    // cout << fromEGN << toEGN << licensePlate
+    // if(rentHouse.changeOwners(fromEGN, toEGN, licensePlate)){
+    //     something went wrong (a lot of thing could go wrong)
+    // }
+
 }

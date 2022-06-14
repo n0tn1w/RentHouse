@@ -58,8 +58,8 @@ std::ifstream &operator>>(std::ifstream &ifstr, Bus &B)
     ifstr >> temp;
     B.setSeatsCount(temp.convertToInt());
     ifstr >> temp;
-    B.setIsRented(temp.convertToInt());
-    ifstr >> temp;
+    //B.setIsRented(temp.convertToInt());
+    //ifstr >> temp;
     B.setEngineType(temp.convertToInt());
     ifstr >> temp;
     B.setGearbox(temp.convertToInt());
@@ -80,7 +80,7 @@ std::ofstream &operator<<(std::ofstream &ofstr, const Bus &B)
     ofstr << B.getModel();
     ofstr << B.getYearOfProduction() << newLine;
     ofstr << B.getSeatsCount() << newLine;
-    ofstr << B.getIsRented() << newLine;
+//    ofstr << B.getIsRented() << newLine;
     ofstr << B.engineType << newLine;
     ofstr << B.gearbox << newLine;
     ofstr << B.rating << newLine;

@@ -19,7 +19,7 @@ public:
     void Add_Customer();
     void Add_Vehicle();
 
-    void Print_CarsByBrand() const;
+    void Print_VehiclesByBrand() const;
     // we probably dont need this because they will invoke just one line function
     //  void Print_AllCustomers() const;
     //  void Print_AllCars() const;

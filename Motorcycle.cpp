@@ -53,7 +53,7 @@ std::ofstream &operator<<(std::ofstream &ofstr, const Motorcycle &M)
     ofstr << M.getModel();
     ofstr << M.getYearOfProduction() << newLine;
     ofstr << M.getSeatsCount() << newLine;
-    ofstr << M.getIsRented() << newLine;
+//    ofstr << M.getIsRented() << newLine;
     ofstr << M.engineType << newLine;
     ofstr << M.gearbox << newLine;
     ofstr << M.doesHaveExtraHouse << newLine;
@@ -75,8 +75,8 @@ std::ifstream &operator>>(std::ifstream &ifstr, Motorcycle &M)
     M.setYearOfProduction(temp.convertToInt());
     ifstr >> temp;
     M.setSeatsCount(temp.convertToInt());
-    ifstr >> temp;
-    M.setIsRented(temp.convertToInt());
+//    ifstr >> temp;
+//    M.setIsRented(temp.convertToInt());
     ifstr >> temp;
     M.setEngineType(temp.convertToInt());
     ifstr >> temp;
