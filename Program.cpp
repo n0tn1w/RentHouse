@@ -124,7 +124,11 @@ void Program::Menu_Print()
     }
     else if (line.isChar(char_counter + 4))
     {
+<<<<<<< HEAD
         rentHouse.printRentsByStartDate();
+=======
+        Print_VehiclesByBrand();
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
     }
     else if (line.isChar(char_counter + 5))
     {
@@ -264,12 +268,19 @@ void Program::Print_VehiclesByBrand() const
     brand.getLine(std::cin);
 
     rentHouse.printVehiclesByBrand(brand);
+<<<<<<< HEAD
     if (rentHouse.printVehiclesByBrand(brand))
     {
         // They are printed
         return;
     }
     std::cout << "Brand does not exist!\n";
+=======
+    // if (!rentHouse.printCarsByBrand(brand)) // if bool
+    // {
+    //     std::cout << "Brand does not exist!\n";
+    // }
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }
 
 void Program::Delete_Customer()
@@ -350,13 +361,23 @@ void Program::Rent_RentVehicle()
     {
         std::cout << "End date is before Start date!";
     }
+<<<<<<< HEAD
 
     rentHouse.addRent(EGN, plate, StartDate, EndDate);
     std::cout << "Rent added successfuly!\n";
+=======
+    // if( !rentHouse.addRent(EGN,plate,SDate, EDate) ) {
+    //      vehicle with this plate exist
+    // }
+    // A person can rent 2 cars,
+    // but one car cant be rent by 2 people
+    // same with man and woman
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }
 
 void Program::Rent_EndRentVehicle()
 {
+<<<<<<< HEAD
     std::cout << "Enter License plate: ";
     MyString plate;
     plate.getLine(std::cin);
@@ -367,6 +388,11 @@ void Program::Rent_EndRentVehicle()
         return;
     }
     std::cout << "There is no vehicle with this license plate!\n";
+=======
+    // if( !rentHouse.removeRent(licensePlate) ) {
+    //     there is not vehicle with this licensePlate
+    // }
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }
 
 void Program::Rent_ExtendRent()
@@ -393,16 +419,24 @@ void Program::Rent_ExtendRent()
     }
     size_t days = daysStr.convertToInt();
 
+<<<<<<< HEAD
     if (rentHouse.increaseRentalTime(plate, days))
     {
         std::cout << "Rent days increased successfully!\n";
         return;
     }
     std::cout << "Rent days failed to be increased!\n";
+=======
+    // if( a.increaseRentalTime(licensePlate, days) ) {
+    //      there is not vehicle with this licensePlate
+    // }
+
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }
 
 void Program::Rent_ChangeOwner()
 {
+<<<<<<< HEAD
     std::cout << "Enter License plate: ";
     MyString plate;
     plate.getLine(std::cin);
@@ -429,4 +463,11 @@ void Program::Rent_ChangeOwner()
     }
 
     std::cout << "Rent owner change failed!\n";
+=======
+    // cout << fromEGN << toEGN << licensePlate
+    // if(rentHouse.changeOwners(fromEGN, toEGN, licensePlate)){
+    //     something went wrong (a lot of thing could go wrong)
+    // }
+
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }

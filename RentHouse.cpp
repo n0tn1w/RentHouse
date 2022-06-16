@@ -161,6 +161,7 @@ std::ofstream &operator<<(std::ofstream &ofstr, const RentHouse &RH)
 	return ofstr;
 }
 
+<<<<<<< HEAD
 bool RentHouse::printVehiclesByBrand(const MyString &brand) const
 {
 	bool doesBrandExist = false;
@@ -411,4 +412,127 @@ void RentHouse::printAllFreeCars() const
 			vehicles[i]->print();
 		}
 	}
+=======
+bool RentHouse::printVehiclesByBrand(const MyString& brand) const {
+    bool doesItBrandExist = false;
+    for(size_t i = 0; i < vehicles.getCount(); i++) {
+        if(vehicles[i]->getBrand() == brand) {
+            doesItBrandExist = true;
+        }
+    }
+    if(doesItBrandExist) {
+        std::cout << "Vehicles made by " << brand << std::endl;
+        for(size_t i = 0; i < vehicles.getCount(); i++) {
+            if(vehicles[i]->getBrand() == brand) {
+                vehicles[i]->print();
+            }
+        }
+        return true;
+    }
+    return false;
+}
+
+bool RentHouse::deleteCustomer(const MyString& EGN) {
+    for(size_t i = 0; i < rents.getCount(); i++) {
+        if(rents[i]->getEGN() == EGN) {
+            return false;
+        }
+    }
+
+    for(size_t k = 0; k < customers.getCount(); k++) {
+        if(customers[k]->getEGN() == EGN) {
+            if(customers.removeElement(k)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+bool RentHouse::doesRentWithSameLicenseExist(const MyString& licensePlate) {
+    for(int i = 0; i < rents.getCount(); i++) {
+        if(rents[i]->getLicensePlate() == licensePlate) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool RentHouse::deleteVechiles(const MyString& licensePlate) {
+    if(doesRentWithSameLicenseExist(licensePlate)){
+        return false;
+    }
+    for(int k = 0; k < vehicles.getCount(); k++) {
+        if(vehicles[k]->getLicensePlate() == licensePlate) {
+            if(vehicles.removeElement(k)){
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool RentHouse::addRent(const MyString& EGN, const MyString& licensePlate, const Date& dateS, const Date& dateE) {
+    if(doesRentWithSameLicenseExist(licensePlate)){
+        return false;
+    }
+    Rent rent(EGN, licensePlate, dateS, dateE);
+    rents.addElemenet(rent);
+    return true;
+}
+
+bool RentHouse::removeRent(const MyString& licensePlate) {
+    if(doesRentWithSameLicenseExist(licensePlate)) {
+        for(int i = 0; i < rents.getCount(); i++) {
+            if(rents[i]->getLicensePlate() == licensePlate) {
+                rents.removeElement(i);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool RentHouse::increaseRentalTime(const MyString& licensePlate, const size_t days) {
+    if(doesRentWithSameLicenseExist(licensePlate)) {
+        for(int i = 0; i < rents.getCount(); i++) {
+            if(rents[i]->getLicensePlate() == licensePlate) {
+                rents[i]->increaseRentalTime(days);
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+bool RentHouse::doesCustomerWithEGNExist(const MyString& EGN) {
+    for(int i = 0; i < customers.getCount(); i++) {
+        if(customers[i]->getEGN() == EGN) {
+              return true;
+        }
+    }
+    return false;
+}
+
+bool RentHouse::changeOwners(const MyString& fromEGN, const MyString& toEGN, const MyString& licensePlate) {
+    if(!doesCustomerWithEGNExist(fromEGN) || !doesCustomerWithEGNExist(toEGN)) {
+        return false;
+    }
+
+    if(doesRentWithSameLicenseExist(licensePlate)) {
+        for(int i = 0; i < rents.getCount(); i++) {
+            if(rents[i]->getLicensePlate() == licensePlate && rents[i]->getEGN() == fromEGN) {
+                rents[i]->setEGN(toEGN);
+                return true;
+            }
+        }
+    }
+    return false;
+
+}
+
+void RentHouse::printAllRents() const {
+    for(int i = 0; i < rents.getCount(); i++){
+        rents[i]->print();
+    }
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }

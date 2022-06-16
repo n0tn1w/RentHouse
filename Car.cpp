@@ -60,8 +60,13 @@ std::ifstream &operator>>(std::ifstream &ifstr, Car &C)
     C.setYearOfProduction(temp.convertToInt());
     ifstr >> temp;
     C.setSeatsCount(temp.convertToInt());
+<<<<<<< HEAD
     //    ifstr >> temp;
     //    C.setIsRented(temp.convertToInt());
+=======
+//    ifstr >> temp;
+//    C.setIsRented(temp.convertToInt());
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
     ifstr >> temp;
     C.setEngineType(temp.convertToInt());
     ifstr >> temp;
@@ -83,7 +88,11 @@ std::ofstream &operator<<(std::ofstream &ofstr, const Car &C)
     ofstr << C.getModel();
     ofstr << C.getYearOfProduction() << newLine;
     ofstr << C.getSeatsCount() << newLine;
+<<<<<<< HEAD
     //    ofstr << C.getIsRented() << newLine;
+=======
+//    ofstr << C.getIsRented() << newLine;
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
     ofstr << C.engineType << newLine;
     ofstr << C.gearbox << newLine;
     ofstr << C.isSportsCar << newLine;

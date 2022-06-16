@@ -20,6 +20,16 @@ public:
     void Add_Vehicle();
 
     void Print_VehiclesByBrand() const;
+<<<<<<< HEAD
+=======
+    // we probably dont need this because they will invoke just one line function
+    //  void Print_AllCustomers() const;
+    //  void Print_AllCars() const;
+    //  void Print_AllRents() const;
+    //  void Print_CarsByPrice() const;
+    //  void Print_RentsByStartDate() const;
+    //  void Print_RentsByEndDate() const;
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 
     void Delete_Customer();
     void Delete_Vehicle();

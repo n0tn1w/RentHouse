@@ -50,7 +50,11 @@ public:
 
 	void setYearOfProduction(const size_t);
 	void setSeatsCount(const size_t);
+<<<<<<< HEAD
 
+=======
+	void setModel(const MyString &);
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 	void setEngineType(const size_t);
 	void setGearbox(const size_t);
 
@@ -60,6 +64,10 @@ public:
 	const MyString &getModel() const;
 	size_t getYearOfProduction() const;
 	size_t getSeatsCount() const;
+<<<<<<< HEAD
+=======
+	const MyString &getModel() const;
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 
 	const Category &getCategory() const;
 	const Gearbox &getGearbox() const;

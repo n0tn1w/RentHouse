@@ -42,6 +42,14 @@ void Vehicle::setModel(const MyString &model)
     this->model = model;
 }
 
+<<<<<<< HEAD
+=======
+/*void Vehicle::setIsRented(const bool isRented)
+{
+    this->isRented = isRented;
+}*/
+
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 void Vehicle::setEngineType(const size_t index)
 {
     engineType = (EngineType)index;
@@ -77,6 +85,14 @@ const MyString &Vehicle::getModel() const
     return model;
 }
 
+<<<<<<< HEAD
+=======
+/*bool Vehicle::getIsRented() const
+{
+    return isRented;
+}*/
+
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 const Vehicle::Category &Vehicle::getCategory() const
 {
     return category;
@@ -98,6 +114,7 @@ bool Vehicle::isVehicleNew()
     return yearOfProduction >= newYear;
 }
 
+<<<<<<< HEAD
 void Vehicle::print() const
 {
     std::cout << "License plate: " << licensePlate << std::endl;
@@ -105,4 +122,21 @@ void Vehicle::print() const
               << ", Model: " << model
               << ", Year of production: " << yearOfProduction
               << ", Number of seats: " << seatsCount << "; " << std::endl;
+=======
+/*bool Vehicle::isVehicleRented() const
+{
+    return isRented;
+} */
+
+/*void Vehicle::changeRentedStatus(bool status)
+{
+    isRented = status;
+}*/
+
+void Vehicle::print() const
+{
+    std::cout << "License plate: " << licensePlate << std::endl;
+//    std::cout << "Is rented: " << isRented << std::endl;
+    std::cout << "Brand: " << brand << "; Model: " << model << "; Year of production: " << yearOfProduction << "; Number of seats: " << seatsCount << "; ";
+>>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }
