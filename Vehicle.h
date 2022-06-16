@@ -11,7 +11,6 @@ private:
 	MyString model;
 	size_t yearOfProduction;
 	size_t seatsCount;
-	bool isRented;
 
 protected:
 	enum Category
@@ -19,7 +18,7 @@ protected:
 		Motorcycle,
 		Automobile,
 		Bus,
-		UnknownCarType
+		UnknownVehicleType
 	} category;
 
 	enum Gearbox
@@ -44,33 +43,29 @@ public:
 	virtual ~Vehicle() = default;
 	virtual Vehicle *clone() const = 0;
 
+	//setters
 	void setBrand(const MyString &);
 	void setLicensePlate(const MyString &);
+	void setModel(const MyString &);
+
 	void setYearOfProduction(const size_t);
 	void setSeatsCount(const size_t);
-	void setModel(const MyString &);
-	void setIsRented(const bool);
+
 	void setEngineType(const size_t);
 	void setGearbox(const size_t);
 
+	//getters
 	const MyString &getBrand() const;
 	const MyString &getLicensePlate() const;
+	const MyString &getModel() const;
 	size_t getYearOfProduction() const;
 	size_t getSeatsCount() const;
-	const MyString &getModel() const;
-	bool getIsRented() const;
 
 	const Category &getCategory() const;
 	const Gearbox &getGearbox() const;
 	const EngineType &getEngineType() const;
 
+
 	bool isVehicleNew();
-	bool isVehicleRented() const;
-
-	void changeRentedStatus(bool);
-
 	virtual void print() const;
-
-private:
-	void setDefaultValue();
 };

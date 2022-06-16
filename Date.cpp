@@ -98,7 +98,7 @@ bool operator<=(const Date &left, const Date &right)
     return left < right || left == right;
 }
 
-bool isValidDate(const size_t day, const size_t month, const size_t year)
+bool Date::isValidDate()
 {
     if (month > 12 || month < 1)
     {
@@ -163,4 +163,10 @@ std::ostream &operator<<(std::ostream &ostr, const Date &date)
 {
     ostr << date.day << " " << date.month << " " << date.year;
     return ostr;
+}
+
+std::istream &operator>>(std::istream &istr, Date &date)
+{
+    istr >> date.day >> date.month >> date.year;
+    return istr;
 }

@@ -7,12 +7,14 @@
 
 typedef Container<Vehicle> ListVehicles;
 typedef Container<Customer> ListCustomers;
+typedef Container<Rent> ListRents;
 
 class RentHouse
 {
 private:
 	ListVehicles vehicles;
 	ListCustomers customers;
+	ListRents rents;
 
 	void freeCars();
 
@@ -26,25 +28,27 @@ public:
 	void printAllVehicles() const;
 	void printAllCustomers() const;
 	void printAllRents() const;
+	bool printVehiclesByBrand(const MyString &) const;
 
-	// implement master
-	void printCarsByPrice() const;
+	bool deleteCustomer(const MyString &);
+	bool deleteVechile(const MyString &);
+
+	bool addRent(const MyString &, const MyString &, const Date &, const Date &);
+	bool removeRent(const MyString &);
+	bool increaseRentalTime(const MyString &, const size_t);
+	bool changeOwners(const MyString &, const MyString &);
+
 	void printRentsByStartDate() const;
 	void printRentsByEndDate() const;
-	void printCarsByBrand(const MyString &) const;
-
-	void rentCar();
-	void returnCar();
-	void extendRentalPeriod();
 	void printAllFreeCars() const;
 
 	friend std::ifstream &operator>>(std::ifstream &, RentHouse &);
 	friend std::ofstream &operator<<(std::ofstream &, const RentHouse &);
 
-private:
 	bool addVehicles(Vehicle &&);
-	bool isCustomerWithUniqueEGN(Customer *);
-	bool isLicensePlateUnique(Vehicle &);
+	bool isLicensePlateUnique(const MyString &);
+	bool doesCustomerWithEGNExist(const MyString &);
+	bool doesRentWithSameLicenseExist(const MyString &);
 
 	friend std::ifstream &operator>>(std::ifstream &, RentHouse &);
 	friend std::ofstream &operator<<(std::ofstream &, const RentHouse &);

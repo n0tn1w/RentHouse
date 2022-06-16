@@ -18,4 +18,17 @@ public:
     void increaseRentalTime(size_t);
 
     friend std::ostream &operator<<(std::ostream &, const Rent &);
+
+    const MyString &getEGN() const;
+    const MyString &getLicensePlate() const;
+    const Date &getDateRented() const;
+    const Date &getDateToReturn() const;
+
+    void setEGN(const MyString &);
+    void setLicensePlate(const MyString &);
+    void setDateRented(const Date &);
+    void setDateToReturn(const Date &);
+
+    Rent *clone() const;
+    void print() const;
 };
