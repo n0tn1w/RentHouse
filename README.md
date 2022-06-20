@@ -14,22 +14,22 @@ We have the following classes to help us:
 - Number of seats
 - Gearbox which can be Manual or Auto
 - Type of the engine which can be Diesel, Petrol and Electric
-- It has 3 children Car, Motorcycle and Bus
+- We have 3 types of vehicles - Car, Motorcycle and Bus
 
 ## Car 
 - Inherited properties from class Vehicle 
-- Is it sports car
-- Is it convertable
+- Is it sports car (true/false)
+- Is it convertable (true/false)
 
 ## Bus 
 - Inherited properties from class Vehicle 
-- Rating of the bus
-- Does it have AC
+- Rating of the bus 
+- Does it have AC (true/false)
 
 ## Motorcycle
 - Inherited properties from class Vehicle 
-- Does it have a sidecar
-- Does it have extra storage space
+- Does it have a sidecar (true/false)
+- Does it have extra storage space (true/false)
 
 ## Customer
 - Name
@@ -80,7 +80,8 @@ This diagram will help you visualize the relationships between the classes in th
 
 ## Menu 
 
-A quick guild how to use our program:
+A quick guild how to use our program
+
 (***Type only the first letter or number***)
 
 1. Add
