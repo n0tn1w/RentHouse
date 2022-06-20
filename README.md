@@ -1,6 +1,6 @@
 # Rent House
 The project has the goal to help a new rent house to manage its operations. 
-The programme can track info for customers, vechiles and rents with a easy to use interface. 
+The program can track info for customers, vechiles and rents with a easy to use interface. 
 The user can add vehicles and customer, rent a vehicle to a customer and has a lot of utilies which can
 help him do its job better.
 
@@ -51,10 +51,27 @@ We have the following classes to help us:
 - List of all current rents
 - Functionalities:
   - Add vehicle
-  - Print all
+  - Add customer
+  - Delete vehicle
+  - Delete customer
 
-Text outside
-**italian**
+  - Print all vehicles
+  - Print all customers
+  - Print all rents
+  - Print vehicles by brand
+  - Print rents by start date 
+  - Print rents by end date 
+  - Print all cars which can be rented
 
+  - Add rent with a customer and vehicle
+  - Remove rent
+  - Increase rental time
+  - Change the owner of the rent
 
+The program will save all the data into a file (***data.txt***) which with 
+every start of the app will be loaded with the current data.
+
+## UML diagram
+
+This diagram will help you visualize the relationships between the classes in the application
 ![alt text](https://github.com/n0tn1w/RentHouse/blob/master/Rent_House_UML.png?raw=true)
