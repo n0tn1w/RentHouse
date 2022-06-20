@@ -50,8 +50,8 @@ We have the following classes to help us:
 - List of all signed customers
 - List of all current rents
 - Functionalities:
-- - Add vehicle
-- - Print all
+  - Add vehicle
+  - Print all
 
 Text outside
 **italian**
