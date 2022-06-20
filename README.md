@@ -1,8 +1,9 @@
 # Rent House
 The project has the goal to help a new rent house to manage its operations. 
-The program can track info for customers, vechiles and rents with a easy to use interface. 
-The user can add vehicles and customer, rent a vehicle to a customer and has a lot of utilies which can
-help him do its job better.
+The program can track info for customers, vechiles and rents. 
+The user can add vehicles and customer, rent a vehicle to a customer, print data
+for different things and much more. With an easy to use interface everyone can open there
+own vehicle rent house.
 
 We have the following classes to help us:
 ## Vehicles (abstract class)
@@ -78,6 +79,9 @@ This diagram will help you visualize the relationships between the classes in th
 ![alt text](https://github.com/n0tn1w/RentHouse/blob/master/Rent_House_UML.png?raw=true)
 
 ## Menu 
+
+A quick guild how to use our program:
+(***Type only the first letter or number***)
 
 1. Add
 - a. Customer
