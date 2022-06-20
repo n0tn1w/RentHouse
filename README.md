@@ -1,8 +1,8 @@
-Lol lol
-# Main title
-idea of prokect
+# Rent House
+The project has the goal to help a new rent house to manage its operations. 
+The programme can track info for customers, vechiles and rents with a easy to use interface. 
 
-## Title iwth limk
+## Vechiles
 - small text
 - bullet point
 
