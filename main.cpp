@@ -1,9 +1,10 @@
 #include "Program.h"
-#include "Car.h"
 
 int main()
 {
     Program program;
+
+    program.load();
     program.StartMenu();
 
     return 0;

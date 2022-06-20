@@ -2,6 +2,7 @@
 #include <cstring>
 #include <iostream>
 #include <iomanip>
+#pragma warning(disable : 4996)
 
 void MyString::copyFrom(const MyString &other)
 {
@@ -44,7 +45,7 @@ size_t getNumSize(size_t num)
 
 MyString::MyString(size_t n)
 {
-    int numSize = getNumSize(n);
+    size_t numSize = getNumSize(n);
     str = new char[numSize + 1];
 
     str[numSize] = '\0';
@@ -142,7 +143,7 @@ MyString operator+(const MyString &lhs, const MyString &rhs)
 
 std::ostream &operator<<(std::ostream &stream, const MyString &str)
 {
-    stream << str.str;
+    stream << str.str << '\n';
     return stream;
 }
 
@@ -157,6 +158,20 @@ std::istream &operator>>(std::istream &stream, MyString &str)
     strcpy(str.str, buff);
 
     return stream;
+}
+
+std::ifstream &operator>>(std::ifstream &ifstr, MyString &str)
+{
+    delete[] str.str;
+
+    char buff[256];
+    ifstr.getline(buff, 256);
+
+    str.size = strlen(buff);
+    str.str = new char[str.size + 1];
+    strcpy(str.str, buff);
+
+    return ifstr;
 }
 
 bool operator==(const MyString &lhs, const MyString &rhs)
@@ -198,7 +213,7 @@ bool MyString::isInt() const
 {
     bool isNeg = (str[0] == '-');
 
-    for (int i = isNeg; i < size; i++)
+    for (size_t i = isNeg; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -215,7 +230,7 @@ bool MyString::isInt() const
 
 bool MyString::isOnlyNumbers() const
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -239,7 +254,7 @@ int MyString::convertToInt() const
         return 0;
     }
 
-    for (int i = isNeg; i < size; i++)
+    for (size_t i = isNeg; i < size; i++)
     {
         n += (str[i] - '0');
         n *= 10;
@@ -263,7 +278,7 @@ bool MyString::isDouble() const
     bool isNeg = (str[0] == '-');
     int dotCount = 0;
 
-    for (int i = isNeg; i < size; i++)
+    for (size_t i = isNeg; i < size; i++)
     {
         if (str[i] < '0' || str[i] > '9')
         {
@@ -287,9 +302,9 @@ bool MyString::isDouble() const
     return dotCount == 1;
 }
 
-int MyString::findDotInDouble() const
+size_t MyString::findDotInDouble() const
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         if (str[i] == '.')
         {
@@ -314,21 +329,22 @@ double MyString::convertToDouble() const
         return 0;
     }
 
-    int index = findDotInDouble();
+    size_t index = findDotInDouble();
     bool isNeg = (str[0] == '-');
-    for (int i = isNeg; i < index; i++)
+
+    for (size_t i = isNeg; i < index; i++)
     {
         n += (str[i] - '0');
         n *= 10;
     }
     n /= 10;
-    for (int i = index + 1; i < size; i++)
+    for (size_t i = index + 1; i < size; i++)
     {
         after += (str[i] - '0');
         after *= 10;
     }
     after /= 10;
-    for (int i = 0; i < size - index - 1; i++)
+    for (size_t i = 0; i < size - index - 1; i++)
     {
         after /= 10;
     }
@@ -344,4 +360,9 @@ double MyString::convertToDouble() const
 bool MyString::isChar(const char symb) const
 {
     return size == 1 && str[0] == symb;
+}
+
+char *MyString::getText() const
+{
+    return str;
 }

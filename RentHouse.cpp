@@ -16,26 +16,28 @@ bool RentHouse::addVehicles(Vehicle &&vechile)
 
 void RentHouse::addCar(const MyString &brand, const MyString &model,
 					   const MyString &licensePlate, const size_t yearOfProduction,
-					   const size_t seatsCount, const bool isSportsCar,
+					   const size_t seatsCount, const size_t engineType,
+					   const size_t gearbox, const bool isSportsCar,
 					   const bool isConvertable)
 {
-	addVehicles(Car(brand, licensePlate, yearOfProduction, seatsCount, isSportsCar, isConvertable));
+	addVehicles(Car(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, isSportsCar, isConvertable));
 }
 
 void RentHouse::addBus(const MyString &brand, const MyString &model,
 					   const MyString &licensePlate, const size_t yearOfProduction,
-					   const size_t seatsCount, const size_t rating, const bool hasAC)
+					   const size_t seatsCount, const size_t engineType,
+					   const size_t gearbox, const size_t rating, const bool hasAC)
 {
-	addVehicles(Bus(brand, licensePlate, yearOfProduction, seatsCount, rating, hasAC));
+	addVehicles(Bus(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, rating, hasAC));
 }
 
 void RentHouse::addMotorcycle(const MyString &brand, const MyString &model,
 							  const MyString &licensePlate, const size_t yearOfProduction,
-							  const size_t seatsCount, const bool doesHaveExtraHouse,
-							  const bool hasStorageSpace)
+							  const size_t seatsCount, const size_t gearbox,
+							  const size_t engineType, const bool doesHaveExtraHouse, const bool hasStorageSpace)
 {
-	addVehicles(Motorcycle(brand, licensePlate, yearOfProduction,
-						   seatsCount, doesHaveExtraHouse, hasStorageSpace));
+	addVehicles(Motorcycle(brand, model, licensePlate, yearOfProduction,
+						   seatsCount, gearbox, engineType, doesHaveExtraHouse, hasStorageSpace));
 }
 
 bool RentHouse::addCustomer(const MyString &name, const MyString &email,
@@ -71,6 +73,7 @@ void RentHouse::printAllVehicles() const
 	for (size_t i = 0; i < vehicles.getCount(); i++)
 	{
 		vehicles[i]->print();
+		std::cout << "\n";
 	}
 }
 
@@ -85,83 +88,114 @@ void RentHouse::printAllCustomers() const
 
 std::ifstream &operator>>(std::ifstream &ifstr, RentHouse &RH)
 {
-	size_t vehicleType;
-	MyString p1, p2, p3, p4, p5, p6, p7, p8, p9;
-	MyString newLine;
-	size_t carsCount;
+	MyString temp;
+	MyString brand, model, licensePlate;
+	size_t yearOfProduction, seatsCount, category, gearbox, engineType;
+	size_t inputCount;
 
-	ifstr >> carsCount >> newLine;
-
-	for (size_t i = 0; i < carsCount; i++)
+	ifstr >> temp;
+	inputCount = temp.convertToInt();
+	for (size_t i = 0; i < inputCount; i++)
 	{
-		ifstr >> p1 >> p2 >> p3 >> p4 >> p5 >> p6 >> p7 >> p8 >> p9;
+		ifstr >> brand >> model >> licensePlate;
+		ifstr >> temp;
+		yearOfProduction = temp.convertToInt();
+		ifstr >> temp;
+		seatsCount = temp.convertToInt();
+		ifstr >> temp;
+		gearbox = temp.convertToInt();
+		ifstr >> temp;
+		engineType = temp.convertToInt();
+		ifstr >> temp;
+		category = temp.convertToInt();
 
-		vehicleType = p1.convertToInt();
-		switch (vehicleType)
+		if (category == 0)
 		{
-		case 0:
-			RH.addMotorcycle(p2, p3, p4, p5.convertToInt(),
-							 p6.convertToInt(), p7.convertToInt(), p8.convertToInt());
-		case 1:
-			RH.addCar(p2, p3, p4, p5.convertToInt(), p6.convertToInt(),
-					  p7.convertToInt(), p8.convertToInt());
-		case 2:
-			RH.addBus(p2, p3, p4, p5.convertToInt(), p6.convertToInt(),
-					  p7.convertToInt(), p8.convertToInt());
-		default:
-			std::cout << "Wrong vehicle type specifier!" << std::endl;
-			break;
+			bool param1, param2;
+
+			ifstr >> temp;
+			param1 = temp.convertToInt();
+			ifstr >> temp;
+			param2 = temp.convertToInt();
+
+			RH.addMotorcycle(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+		}
+		else if (category == 1)
+		{
+			bool param1, param2;
+
+			ifstr >> temp;
+			param1 = temp.convertToInt();
+			ifstr >> temp;
+			param2 = temp.convertToInt();
+
+			RH.addCar(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
+		}
+		else if (category == 2)
+		{
+			size_t param1;
+			bool param2;
+
+			ifstr >> temp;
+			param1 = temp.convertToInt();
+			ifstr >> temp;
+			param2 = temp.convertToInt();
+
+			RH.addBus(brand, model, licensePlate, yearOfProduction, seatsCount, gearbox, engineType, param1, param2);
 		}
 	}
 
-	size_t customersCount = RH.customers.getCount();
-	ifstr >> customersCount >> newLine;
-
-	for (size_t i = 0; i < customersCount; i++)
+	MyString name, email, EGN, city, phone, username, password;
+	ifstr >> temp;
+	inputCount = temp.convertToInt();
+	for (size_t i = 0; i < inputCount; i++)
 	{
-		ifstr >> p1 >> p2 >> p3 >> p4 >> p5 >> p6;
+		ifstr >> name >> email >> EGN >> city >> phone >> username >> password;
+		RH.addCustomer(name, email, EGN, city, phone, username, password);
+	}
 
-		// RH.addCustomer(p1, p2, p3, p4, p5, p6);
-	}
-	/*
-	size_t rentsCount = RH.rents.getCount();
-	ofstr << rentsCount << newLine;
-	for (size_t i = 0; i < rentsCount; i++)
+	Date start, end;
+	ifstr >> temp;
+	inputCount = temp.convertToInt();
+	for (size_t i = 0; i < inputCount; i++)
 	{
-		ifstr >> RH.rents[i];
+		if (i != 0)
+		{
+			ifstr >> temp;
+		}
+		ifstr >> EGN >> licensePlate >> start >> end;
+		RH.addRent(EGN, licensePlate, start, end);
 	}
-	*/
+
 	return ifstr;
 }
 
 std::ofstream &operator<<(std::ofstream &ofstr, const RentHouse &RH)
 {
-	MyString newLine("\n");
 	size_t carsCount = RH.vehicles.getCount();
-	ofstr << carsCount << newLine;
+	ofstr << carsCount << '\n';
 	for (size_t i = 0; i < carsCount; i++)
 	{
-		ofstr << RH.vehicles[i];
+		RH.vehicles[i]->save(ofstr);
 	}
 
 	size_t customersCount = RH.customers.getCount();
-	ofstr << customersCount << newLine;
+	ofstr << customersCount << '\n';
 	for (size_t i = 0; i < customersCount; i++)
 	{
 		ofstr << RH.customers[i];
 	}
-	/*
+
 	size_t rentsCount = RH.rents.getCount();
-	ofstr << rentsCount << newLine;
+	ofstr << rentsCount << '\n';
 	for (size_t i = 0; i < rentsCount; i++)
 	{
 		ofstr << RH.rents[i];
 	}
-	*/
+
 	return ofstr;
 }
 
-<<<<<<< HEAD
 bool RentHouse::printVehiclesByBrand(const MyString &brand) const
 {
 	bool doesBrandExist = false;
@@ -184,6 +218,7 @@ bool RentHouse::printVehiclesByBrand(const MyString &brand) const
 		if (vehicles[i]->getBrand() == brand)
 		{
 			vehicles[i]->print();
+			std::cout << "\n";
 		}
 	}
 	return true;
@@ -220,7 +255,7 @@ bool RentHouse::deleteCustomer(const MyString &EGN)
 
 bool RentHouse::doesRentWithSameLicenseExist(const MyString &licensePlate)
 {
-	for (int i = 0; i < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
 		if (rents[i]->getLicensePlate() == licensePlate)
 		{
@@ -237,7 +272,7 @@ bool RentHouse::deleteVechile(const MyString &licensePlate)
 		return false;
 	}
 
-	for (int k = 0; k < vehicles.getCount(); k++)
+	for (size_t k = 0; k < vehicles.getCount(); k++)
 	{
 		if (vehicles[k]->getLicensePlate() == licensePlate)
 		{
@@ -272,7 +307,7 @@ bool RentHouse::removeRent(const MyString &licensePlate)
 		return false;
 	}
 
-	for (int i = 0; i < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
 		if (rents[i]->getLicensePlate() == licensePlate)
 		{
@@ -291,7 +326,7 @@ bool RentHouse::increaseRentalTime(const MyString &licensePlate, const size_t da
 		return false;
 	}
 
-	for (int i = 0; i < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
 		if (rents[i]->getLicensePlate() == licensePlate)
 		{
@@ -304,7 +339,7 @@ bool RentHouse::increaseRentalTime(const MyString &licensePlate, const size_t da
 
 bool RentHouse::doesCustomerWithEGNExist(const MyString &EGN)
 {
-	for (int i = 0; i < customers.getCount(); i++)
+	for (size_t i = 0; i < customers.getCount(); i++)
 	{
 		if (customers[i]->getEGN() == EGN)
 		{
@@ -322,7 +357,7 @@ bool RentHouse::changeOwners(const MyString &toEGN, const MyString &licensePlate
 		return false;
 	}
 
-	for (int i = 0; i < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
 		if (rents[i]->getLicensePlate() == licensePlate)
 		{
@@ -335,28 +370,33 @@ bool RentHouse::changeOwners(const MyString &toEGN, const MyString &licensePlate
 
 void RentHouse::printAllRents() const
 {
-	for (int i = 0; i < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
 		rents[i]->print();
+		std::cout << "\n";
 	}
 }
 
 void RentHouse::printRentsByStartDate() const
 {
 	size_t minIndex;
-	size_t *rentsSortedByStartDate = new size_t[rents.getCount()];
+	size_t *rentsSortedByStartDate = new size_t[rents.getCount()]{0};
 
-	for (size_t i = 0; i + 1 < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i ++) {
+        rentsSortedByStartDate[i] = i;
+	}
+
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
-		minIndex = i;
-		for (size_t j = i + 1; j < rents.getCount(); j++)
+		for (size_t j = 0; j < rents.getCount() - i -1; j++)
 		{
-			if (rents[j]->getDateRented() < rents[minIndex]->getDateRented())
+			if (rents[rentsSortedByStartDate[j]]->getDateRented() > rents[rentsSortedByStartDate[j+1]]->getDateRented())
 			{
-				minIndex = j;
+			    size_t temp = rentsSortedByStartDate[j];
+				rentsSortedByStartDate[j] = rentsSortedByStartDate[j+1];
+				rentsSortedByStartDate[j+1] = temp;
 			}
 		}
-		rentsSortedByStartDate[i] = minIndex;
 	}
 
 	for (size_t i = 0; i < rents.getCount(); i++)
@@ -370,19 +410,23 @@ void RentHouse::printRentsByStartDate() const
 void RentHouse::printRentsByEndDate() const
 {
 	size_t minIndex;
-	size_t *rentsSortedByEndDate = new size_t[rents.getCount()];
+	size_t *rentsSortedByEndDate = new size_t[rents.getCount()]{0};
 
-	for (size_t i = 0; i + 1 < rents.getCount(); i++)
+	for (size_t i = 0; i < rents.getCount(); i ++) {
+        rentsSortedByEndDate[i] = i;
+	}
+
+	for (size_t i = 0; i < rents.getCount(); i++)
 	{
-		minIndex = i;
-		for (size_t j = i + 1; j < rents.getCount(); j++)
+		for (size_t j = 0; j < rents.getCount() - i -1; j++)
 		{
-			if (rents[j]->getDateToReturn() < rents[minIndex]->getDateToReturn())
+			if (rents[rentsSortedByEndDate[j]]->getDateRented() < rents[rentsSortedByEndDate[j+1]]->getDateRented())
 			{
-				minIndex = j;
+			    size_t temp = rentsSortedByEndDate[j];
+				rentsSortedByEndDate[j] = rentsSortedByEndDate[j+1];
+				rentsSortedByEndDate[j+1] = temp;
 			}
 		}
-		rentsSortedByEndDate[i] = minIndex;
 	}
 
 	for (size_t i = 0; i < rents.getCount(); i++)
@@ -390,12 +434,14 @@ void RentHouse::printRentsByEndDate() const
 		rents[rentsSortedByEndDate[i]]->print();
 	}
 
+
 	delete[] rentsSortedByEndDate;
 }
 
-void RentHouse::printAllFreeCars() const
+bool RentHouse::printAllFreeCars() const
 {
 	bool isRented;
+	bool atLeastOneRented = false;
 	for (size_t i = 0; i < vehicles.getCount(); i++)
 	{
 		isRented = false;
@@ -407,132 +453,15 @@ void RentHouse::printAllFreeCars() const
 				break;
 			}
 		}
-		if (!isRented)
-		{
+		if (!isRented){
 			vehicles[i]->print();
+			atLeastOneRented = true;
 		}
 	}
-=======
-bool RentHouse::printVehiclesByBrand(const MyString& brand) const {
-    bool doesItBrandExist = false;
-    for(size_t i = 0; i < vehicles.getCount(); i++) {
-        if(vehicles[i]->getBrand() == brand) {
-            doesItBrandExist = true;
-        }
-    }
-    if(doesItBrandExist) {
-        std::cout << "Vehicles made by " << brand << std::endl;
-        for(size_t i = 0; i < vehicles.getCount(); i++) {
-            if(vehicles[i]->getBrand() == brand) {
-                vehicles[i]->print();
-            }
-        }
+	if(!atLeastOneRented) {
+        return false;
+    }else {
         return true;
     }
-    return false;
-}
 
-bool RentHouse::deleteCustomer(const MyString& EGN) {
-    for(size_t i = 0; i < rents.getCount(); i++) {
-        if(rents[i]->getEGN() == EGN) {
-            return false;
-        }
-    }
-
-    for(size_t k = 0; k < customers.getCount(); k++) {
-        if(customers[k]->getEGN() == EGN) {
-            if(customers.removeElement(k)){
-                return true;
-            }
-        }
-    }
-    return false;
-}
-bool RentHouse::doesRentWithSameLicenseExist(const MyString& licensePlate) {
-    for(int i = 0; i < rents.getCount(); i++) {
-        if(rents[i]->getLicensePlate() == licensePlate) {
-            return true;
-        }
-    }
-    return false;
-}
-
-bool RentHouse::deleteVechiles(const MyString& licensePlate) {
-    if(doesRentWithSameLicenseExist(licensePlate)){
-        return false;
-    }
-    for(int k = 0; k < vehicles.getCount(); k++) {
-        if(vehicles[k]->getLicensePlate() == licensePlate) {
-            if(vehicles.removeElement(k)){
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-bool RentHouse::addRent(const MyString& EGN, const MyString& licensePlate, const Date& dateS, const Date& dateE) {
-    if(doesRentWithSameLicenseExist(licensePlate)){
-        return false;
-    }
-    Rent rent(EGN, licensePlate, dateS, dateE);
-    rents.addElemenet(rent);
-    return true;
-}
-
-bool RentHouse::removeRent(const MyString& licensePlate) {
-    if(doesRentWithSameLicenseExist(licensePlate)) {
-        for(int i = 0; i < rents.getCount(); i++) {
-            if(rents[i]->getLicensePlate() == licensePlate) {
-                rents.removeElement(i);
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-bool RentHouse::increaseRentalTime(const MyString& licensePlate, const size_t days) {
-    if(doesRentWithSameLicenseExist(licensePlate)) {
-        for(int i = 0; i < rents.getCount(); i++) {
-            if(rents[i]->getLicensePlate() == licensePlate) {
-                rents[i]->increaseRentalTime(days);
-                return true;
-            }
-        }
-    }
-    return false;
-}
-
-bool RentHouse::doesCustomerWithEGNExist(const MyString& EGN) {
-    for(int i = 0; i < customers.getCount(); i++) {
-        if(customers[i]->getEGN() == EGN) {
-              return true;
-        }
-    }
-    return false;
-}
-
-bool RentHouse::changeOwners(const MyString& fromEGN, const MyString& toEGN, const MyString& licensePlate) {
-    if(!doesCustomerWithEGNExist(fromEGN) || !doesCustomerWithEGNExist(toEGN)) {
-        return false;
-    }
-
-    if(doesRentWithSameLicenseExist(licensePlate)) {
-        for(int i = 0; i < rents.getCount(); i++) {
-            if(rents[i]->getLicensePlate() == licensePlate && rents[i]->getEGN() == fromEGN) {
-                rents[i]->setEGN(toEGN);
-                return true;
-            }
-        }
-    }
-    return false;
-
-}
-
-void RentHouse::printAllRents() const {
-    for(int i = 0; i < rents.getCount(); i++){
-        rents[i]->print();
-    }
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 }

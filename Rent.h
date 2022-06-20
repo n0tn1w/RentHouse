@@ -20,7 +20,6 @@ public:
     friend std::ostream &operator<<(std::ostream &, const Rent &);
 
     const MyString &getEGN() const;
-<<<<<<< HEAD
     const MyString &getLicensePlate() const;
     const Date &getDateRented() const;
     const Date &getDateToReturn() const;
@@ -31,12 +30,7 @@ public:
     void setDateToReturn(const Date &);
 
     Rent *clone() const;
-=======
-    void setEGN(const MyString&);
-    const MyString& getLicensePlate() const;
-    void setLicensePlate(const MyString&);
-
-    Rent* clone() const;
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
     void print() const;
+
+    friend std::ofstream &operator<<(std::ofstream &, const Rent *);
 };

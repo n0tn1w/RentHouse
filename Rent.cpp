@@ -14,7 +14,14 @@ std::ostream &operator<<(std::ostream &ostr, const Rent &rent)
     return ostr;
 }
 
-<<<<<<< HEAD
+std::ofstream &operator<<(std::ofstream &ofstr, const Rent *R)
+{
+    ofstr << R->EGN << R->licensePlate;
+    ofstr << R->dateRented << R->dateToReturn;
+
+    return ofstr;
+}
+
 const MyString &Rent::getEGN() const
 {
     return EGN;
@@ -63,32 +70,10 @@ Rent *Rent::clone() const
 void Rent::print() const
 {
     std::cout << "Vehicle license plate: " << licensePlate
-              << "; Customer's EGN: " << EGN
-              << ";" << std::endl;
+              << "Customer's EGN: " << EGN;
 
-    std::cout << "Starting date: " << dateRented
-              << "; Ending date: " << dateToReturn << ";" << std::endl;
-=======
-
-const MyString& Rent::getEGN() const {
-    return EGN;
-}
-void Rent::setEGN(const MyString& EGN) {
-    this->EGN = EGN;
-}
-
-const MyString &Rent::getLicensePlate() const {
-    return licensePlate;
-}
-void Rent::setLicensePlate(const MyString& licensePlate) {
-    this->licensePlate = licensePlate;
-}
-
-Rent* Rent::clone() const {
-    return new Rent(*this);
-}
-void Rent::print() const {
-    std::cout << "Vehicle license plate: " << licensePlate << "; Customer's EGN: " << EGN << ";" << std::endl;
-    std::cout << "Starting date: " << dateRented << "; Ending date: " << dateToReturn << ";" << std::endl;
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
+    std::cout << "Starting date: ";
+    dateRented.print();
+    std::cout << "Ending date: ";
+    dateToReturn.print();
 }

@@ -43,7 +43,7 @@ public:
 template <typename T>
 void Container<T>::free()
 {
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         delete elements[i];
     }
@@ -54,7 +54,7 @@ template <typename T>
 void Container<T>::resize()
 {
     T **newCollection = new T *[capacity *= 2];
-    for (int i = 0; i < size; i++)
+    for (size_t i = 0; i < size; i++)
     {
         newCollection[i] = elements[i];
     }
@@ -116,17 +116,6 @@ Container<T>::~Container()
 }
 
 template <typename T>
-bool Container<T>::setAt(size_t index, const T &elem)
-{
-    if (index >= size || index < 0)
-    {
-        return false;
-    }
-    // elements[index] = elem;
-    return true;
-}
-
-template <typename T>
 void Container<T>::addElemenet(const T &elem)
 {
     if (size == capacity)
@@ -177,20 +166,12 @@ bool Container<T>::isEmpty() const
 template <typename T>
 T *&Container<T>::operator[](size_t index)
 {
-    if (index >= size)
-    {
-        // return new T();
-    }
     return elements[index];
 }
 
 template <typename T>
 const T *Container<T>::operator[](size_t index) const
 {
-    if (index >= size)
-    {
-        // return new T();
-    }
     return elements[index];
 }
 

@@ -1,5 +1,6 @@
 #pragma once
 #include "RentHouse.h"
+const MyString TXT_NAME = "data.txt";
 
 class Program
 {
@@ -7,6 +8,7 @@ private:
     RentHouse rentHouse;
 
 public:
+    void load();
     void StartMenu();
 
     void Menu_Add();
@@ -20,16 +22,7 @@ public:
     void Add_Vehicle();
 
     void Print_VehiclesByBrand() const;
-<<<<<<< HEAD
-=======
-    // we probably dont need this because they will invoke just one line function
-    //  void Print_AllCustomers() const;
-    //  void Print_AllCars() const;
-    //  void Print_AllRents() const;
-    //  void Print_CarsByPrice() const;
-    //  void Print_RentsByStartDate() const;
-    //  void Print_RentsByEndDate() const;
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
+    void Print_FreeCars();
 
     void Delete_Customer();
     void Delete_Vehicle();
@@ -38,4 +31,6 @@ public:
     void Rent_EndRentVehicle();
     void Rent_ExtendRent();
     void Rent_ChangeOwner();
+
+    void save();
 };

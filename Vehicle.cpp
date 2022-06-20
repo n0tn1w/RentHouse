@@ -3,18 +3,23 @@
 
 Vehicle::Vehicle()
 {
+    seatsCount = 0;
+    yearOfProduction = 2000;
     gearbox = Vehicle::Gearbox::UnknownGearbox;
     engineType = Vehicle::EngineType::UnknownEngineType;
     category = Vehicle::Category::UnknownVehicleType;
 }
 
-Vehicle::Vehicle(const MyString &brand, const MyString &licensePlate,
-                 const size_t yearOfProduction, const size_t seatsCount)
+Vehicle::Vehicle(const MyString &brand, const MyString &model, const MyString &licensePlate,
+                 const size_t yearOfProduction, const size_t seatsCount, const size_t gearbox, const size_t engineType)
 {
     setBrand(brand);
+    setModel(model);
     setLicensePlate(licensePlate);
     setYearOfProduction(yearOfProduction);
     setSeatsCount(seatsCount);
+    setGearbox(gearbox);
+    setEngineType(engineType);
 }
 
 void Vehicle::setBrand(const MyString &brand)
@@ -42,14 +47,6 @@ void Vehicle::setModel(const MyString &model)
     this->model = model;
 }
 
-<<<<<<< HEAD
-=======
-/*void Vehicle::setIsRented(const bool isRented)
-{
-    this->isRented = isRented;
-}*/
-
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 void Vehicle::setEngineType(const size_t index)
 {
     engineType = (EngineType)index;
@@ -85,14 +82,6 @@ const MyString &Vehicle::getModel() const
     return model;
 }
 
-<<<<<<< HEAD
-=======
-/*bool Vehicle::getIsRented() const
-{
-    return isRented;
-}*/
-
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
 const Vehicle::Category &Vehicle::getCategory() const
 {
     return category;
@@ -114,29 +103,29 @@ bool Vehicle::isVehicleNew()
     return yearOfProduction >= newYear;
 }
 
-<<<<<<< HEAD
 void Vehicle::print() const
 {
-    std::cout << "License plate: " << licensePlate << std::endl;
-    std::cout << "Brand: " << brand
-              << ", Model: " << model
-              << ", Year of production: " << yearOfProduction
-              << ", Number of seats: " << seatsCount << "; " << std::endl;
-=======
-/*bool Vehicle::isVehicleRented() const
-{
-    return isRented;
-} */
+    std::cout << "License plate: " << licensePlate
+              << "Brand: " << brand
+              << "Model: " << model
+              << "Year of production: " << yearOfProduction << "\n"
+              << "Number of seats: " << seatsCount << "\n";
+}
 
-/*void Vehicle::changeRentedStatus(bool status)
+std::ofstream &Vehicle::save(std::ofstream &ofstr) const
 {
-    isRented = status;
-}*/
+    ofstr << brand << model << licensePlate;
+    ofstr << yearOfProduction << '\n'
+          << seatsCount << '\n'
+          << gearbox << '\n'
+          << engineType << '\n';
 
-void Vehicle::print() const
+    return ofstr;
+}
+
+std::ifstream &Vehicle::get(std::ifstream &ifstr)
 {
-    std::cout << "License plate: " << licensePlate << std::endl;
-//    std::cout << "Is rented: " << isRented << std::endl;
-    std::cout << "Brand: " << brand << "; Model: " << model << "; Year of production: " << yearOfProduction << "; Number of seats: " << seatsCount << "; ";
->>>>>>> 84dd6936b79aa28aa7b43425f73363abfd09fbf9
+    ifstr >> brand >> model >> licensePlate >> yearOfProduction >> seatsCount;
+
+    return ifstr;
 }
