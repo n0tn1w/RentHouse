@@ -74,4 +74,28 @@ every start of the app will be loaded with the current data.
 ## UML diagram
 
 This diagram will help you visualize the relationships between the classes in the application
+
 ![alt text](https://github.com/n0tn1w/RentHouse/blob/master/Rent_House_UML.png?raw=true)
+
+## Menu 
+
+1. Add
+- a. Customer
+- b. Vehicle
+2. Print
+- a. All customers
+- b. All vehicles
+- c. All rents
+- d. Cars by model
+- e. Rents by start date
+- f. Rents by end date
+- g. All free cars
+3. Rent 
+- a. Rent a vehicle
+- b. Extend rent
+- c. Change owner
+- d. End rent
+4. Delete
+- a. Customer
+- b. Vehicle
+5. Quit (and save into file)
